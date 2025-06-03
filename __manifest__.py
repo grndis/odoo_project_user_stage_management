@@ -13,11 +13,6 @@
     "data": [
         "security/ir.model.access.csv",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "project_user_stage_access/static/src/js/project_kanban_patch.js",
-        ],
-    },
     "installable": True,
     "application": False,
     "license": "LGPL-3",
