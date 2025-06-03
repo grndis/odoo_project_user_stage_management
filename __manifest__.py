@@ -8,7 +8,7 @@
         This module allows users in the "Project / Users" group 
         to create new stages in the project Kanban view.
     """,
-    "author": "Your Company",
+    "author": "superuser.id",
     "depends": ["project"],
     "data": [
         "security/ir.model.access.csv",

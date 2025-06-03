@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Override the project task kanban view to enable stage creation -->
+    <!-- Override the main project task kanban view to enable stage creation -->
     <record id="project_task_kanban_inherit" model="ir.ui.view">
         <field name="name">project.task.kanban.inherit.stage.access</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_kanban"/>
-        <field name="arch" type="xml">
-            <!-- Enable group_create for all users -->
-            <xpath expr="//kanban" position="attributes">
-                <attribute name="group_create">1</attribute>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- Also update the project-specific kanban view -->
-    <record id="project_task_kanban_project_inherit" model="ir.ui.view">
-        <field name="name">project.task.kanban.project.inherit.stage.access</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.project_task_kanban"/>
         <field name="arch" type="xml">
             <!-- Enable group_create for all users -->
             <xpath expr="//kanban" position="attributes">
