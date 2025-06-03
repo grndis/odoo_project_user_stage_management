@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, api, fields
+from lxml import etree
 
 
 class ProjectTaskType(models.Model):
@@ -21,16 +22,32 @@ class ProjectTaskType(models.Model):
             return super(ProjectTaskType, self.sudo()).create(vals_list)
         return super().create(vals_list)
 
+    def write(self, vals):
+        """Allow Project Users to write stages."""
+        if self.env.user.has_group("project.group_project_user") and not self.env.su:
+            return super(ProjectTaskType, self.sudo()).write(vals)
+        return super().write(vals)
+
 
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-    # Add a computed field to check if user can create stages
-    can_create_stage = fields.Boolean(compute="_compute_can_create_stage")
+    @api.model
+    def get_view(self, view_id=None, view_type="form", **options):
+        """Override to enable stage creation in kanban view for Project Users."""
+        res = super().get_view(view_id, view_type, **options)
 
-    def _compute_can_create_stage(self):
-        can_create = self.env.user.has_group(
-            "project.group_project_manager"
-        ) or self.env.user.has_group("project.group_project_user")
-        for task in self:
-            task.can_create_stage = can_create
+        if view_type == "kanban" and self.env.user.has_group(
+            "project.group_project_user"
+        ):
+            doc = etree.XML(res["arch"])
+            kanban_nodes = doc.xpath("//kanban")
+
+            for node in kanban_nodes:
+                # Enable group_create
+                node.set("group_create", "1")
+                node.set("quick_create", "1")
+
+            res["arch"] = etree.tostring(doc, encoding="unicode")
+
+        return res

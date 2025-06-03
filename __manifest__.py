@@ -12,12 +12,10 @@
     "depends": ["project"],
     "data": [
         "security/ir.model.access.csv",
-        "views/web_assets.xml",
     ],
     "assets": {
         "web.assets_backend": [
-            "project_user_stage_access/static/src/js/kanban_controller.js",
-            "project_user_stage_access/static/src/xml/kanban_controller.xml",
+            "project_user_stage_access/static/src/js/project_kanban_patch.js",
         ],
     },
     "installable": True,
