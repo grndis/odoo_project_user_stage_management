@@ -15,7 +15,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "project_user_stage_access/static/src/js/project_kanban_controller.js",
+            "odoo_project_user_stage_management/static/src/js/project_kanban_controller.js",
         ],
     },
     "installable": True,
