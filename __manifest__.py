@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 {
     "name": "Project User Stage Access",
     "version": "18.0.1.0.0",
@@ -7,19 +8,13 @@
         This module allows users in the "Project / Users" group 
         to create new stages in the project Kanban view.
     """,
-    "author": "superuser.id",
-    "website": "https://superuser.id",
+    "author": "Your Company",
     "depends": ["project"],
     "data": [
         "security/ir.model.access.csv",
+        "views/project_views.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "odoo_project_user_stage_management/static/src/js/project_kanban_controller.js",
-        ],
-    },
     "installable": True,
     "application": False,
-    "auto_install": False,
     "license": "LGPL-3",
 }
