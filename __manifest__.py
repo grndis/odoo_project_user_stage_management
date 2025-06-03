@@ -12,7 +12,6 @@
     "depends": ["project"],
     "data": [
         "security/ir.model.access.csv",
-        "views/project_views.xml",
     ],
     "installable": True,
     "application": False,
